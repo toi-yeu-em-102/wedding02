@@ -1,0 +1,934 @@
+/* ===============================
+   RESET + MOBILE FIRST
+   =============================== */
+
+/* Reset box model + bỏ highlight khi tap trên mobile */
+*,
+*::before,
+*::after  {
+  box-sizing: border-box;            /* tính padding + border vào width/height */
+  -webkit-tap-highlight-color: transparent; /* bỏ hiệu ứng xanh khi chạm */
+}
+/* ===============================
+   FONT RIÊNG CHO CÂU ĐỐI
+   =============================== */
+@font-face {
+  font-family: 'CoupletFont';              /* 👉 tên font câu đối */
+  src: url(./CHUVIET/UTM-Brushtip-C.ttf) format('truetype');
+                                            /* 👉 đổi tên file tại đây */
+  font-weight: normal;
+  font-style: normal;
+}@font-face {
+  font-family: 'FONTTEN';        /* tên font dùng trong CSS */
+  src: url(./CHUVIET/MTD-Dettiruka.otf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'thuphap';              /* 👉 tên font câu đối */
+  src: url(./CHUVIET/VNI-thuphap.ttf) format('truetype');
+                                            /* 👉 đổi tên file tại đây */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Thiết lập nền + hành vi cuộn */
+html,body {  
+  margin: 0;  /* bỏ margin mặc định */
+  padding: 0;                     
+  background: #daabab;               /* màu nền trang */
+  color: #000000;                    /* màu chữ mặc định */
+  overflow-x: hidden;                /* CHỐNG TRÀN NGANG (rất quan trọng mobile) */
+  scroll-behavior: smooth;           /* cuộn mượt */
+}
+
+/* ===============================
+   HUY HIỆU / CHỮ NỔI (ví dụ chữ 囍)
+   =============================== */
+.hy {
+  display: inline-flex;              /* inline nhưng vẫn căn giữa được */
+  align-items: center;               /* căn giữa dọc */
+  justify-content: center;           /* căn giữa ngang */
+
+  margin: 40px auto 50px;            /* khoảng cách trên / dưới */
+  padding: 14px 26px;                /* độ dày khối */
+
+  font-size: 100px;                  /* kích thước chữ */
+  color: #fff;                       /* màu chữ */
+  background: linear-gradient(135deg, #b30000, #ff4d4d);
+                                      /* nền gradient đỏ cưới */
+
+  border-radius: 999px;              /* bo tròn dạng pill */
+  box-shadow: 0 8px 20px rgba(179,0,0,0.4);
+                                      /* đổ bóng nổi */
+}
+.hy {
+  flex-shrink: 0;               /* ❌ KHÔNG BỊ CO */
+  display: flex;
+  font-size: 96px;
+}
+
+/* Bọc để căn giữa huy hiệu */
+/* ===============================
+   HÀNG CÂU ĐỐI + CHỮ HỶ (FIX)
+   =============================== */
+.hy-wrapper {
+  display: flex;                /* ÉP NẰM NGANG */
+  align-items: center;          /* CĂN GIỮA THEO TRỤC DỌC */
+  justify-content: center;      /* GOM VÀO GIỮA */
+  gap: 16px;                    /* KHOẢNG CÁCH 3 KHỐI */
+  margin: 30px 0 40px;
+  flex-wrap: nowrap;            /* ❌ KHÔNG CHO RỚT HÀNG */
+}
+
+/* ===============================
+   KHỐI CÂU ĐỐI (BÊN NGOÀI)
+   =============================== */
+.doi-box {
+  display: flex;                /* GIỮ KHỐI */
+  align-items: center;          /* CĂN GIỮA DỌC */
+  flex-shrink: 0;               /* ❌ KHÔNG BỊ ÉP NHỎ */
+}
+
+/* ===============================
+   CÂU ĐỐI CHUNG
+   =============================== */
+.doi {
+  width: 120px;                  /* 2 BÊN BẰNG NHAU */
+  padding: 12px 8px;
+
+  display: flex;
+  flex-direction: column;       /* CHỮ XẾP DỌC */
+  gap: 6px;
+    font-family: 'CoupletFont';
+                                  /* 👉 FONT CÂU ĐỐI */
+  font-size: 30px;
+  font-weight: normal;            /* giữ nét thư pháp */
+  letter-spacing: 4px;            /* giãn nét chữ cho đẹp */
+  color: #f7f1f1;
+
+  background: #7b0808;
+  border-radius: 20px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+@media (max-width: 480px) {
+  .doi {
+    width: 30px;
+    font-size: 10px;              /* chữ nhỏ hơn */
+    letter-spacing: 0.5px;        /* giảm giãn chữ */
+  }
+}
+
+/* CÂU ĐỐI TRÁI → ÉP SÁT VỀ PHÍA CHỮ 囍 */
+.doi-left {
+  align-items: flex-end;        /* CHỮ SÁT PHẢI */
+  text-align: right;
+}
+
+/* CÂU ĐỐI PHẢI → ÉP SÁT VỀ PHÍA CHỮ 囍 */
+.doi-right {
+  align-items: flex-start;      /* CHỮ SÁT TRÁI */
+  text-align: left;
+}
+
+/* ===============================
+   CHỮ HỶ (KHÓA VỊ TRÍ)
+   =============================== */
+
+
+/* ===============================
+   MOBILE
+   =============================== */
+@media (max-width: 480px) {
+  .hy {
+    font-size: 72px;
+    padding: 10px 18px;
+  }
+
+  .doi {
+    width: 60px;
+    font-size: 16px;
+  }
+}
+
+
+/* ===============================
+   CONTAINER APP
+   =============================== */
+.app {
+  max-width: 720px;                  /* giới hạn chiều rộng (tablet) */
+  margin: 0 auto;                    /* căn giữa màn hình */
+  padding: 20px 14px 60px;           /* padding chống tràn mobile */
+}
+
+/* ===============================
+   CARD (khung nội dung)
+   =============================== */
+.card {
+  background: linear-gradient(
+    to right,
+    transparent,
+    #791212ef,
+    transparent
+  );      /* ❌ bỏ nền khung */
+  border-radius: 0;              /* ❌ bỏ bo góc */
+  padding: 0;                    /* ❌ bỏ đệm */
+  margin-bottom: 24px;           /* chỉ giữ khoảng cách giữa các phần */
+  box-shadow: none;              /* ❌ bỏ đổ bóng */
+}
+
+/* Card căn giữa nội dung */
+.card.center {
+  text-align: center; 
+                /* căn giữa chữ */
+}
+.card.center h3{
+  white-space: nowrap; 
+  font-size: 30px;
+   font-family: 'CoupletFont'; 
+}
+
+/* ===============================
+   TITLE + SUBTITLE
+   =============================== */
+.title {
+  font-size: 40px;                   /* cỡ tiêu đề */
+  font-weight: 70;                  /* chữ đậm */
+  margin-bottom: 1px;                /* cách nội dung dưới */
+  color: #520a48; 
+}
+.title{
+  display: flex;
+  align-items: center;   /* canh giữa theo chiều dọc */
+  justify-content: center;
+  gap: 10px;             /* khoảng cách giữa chữ */
+  white-space: nowrap; /* ❗ không cho xuống dòng */
+}
+@media (max-width: 480px){
+.title h2{
+  font-size: clamp(20px, 5vw, 36px);
+}
+
+.title p{
+  font-size: clamp(16px, 4vw, 28px);
+}
+}
+
+.subtitle {
+  opacity: 0.8;                      /* làm mờ nhẹ */
+  font-size: 14px;                   /* chữ nhỏ */
+}
+
+/* ===============================
+   TEXT NỘI DUNG
+   =============================== */
+.text {
+  line-height: 1;                  /* giãn dòng dễ đọc */
+  font-size: 15px;                   /* cỡ chữ */
+}
+
+/* ===============================
+   IMAGE THƯỜNG
+   =============================== */
+.photo {
+  width: 100%;                       /* ảnh full khung */
+  border-radius: 14px;               /* bo góc ảnh */
+  margin-top: 10px;                  /* cách nội dung trên */
+}
+
+/* ===============================
+   INFO LIST
+   =============================== */
+.info {
+  display: grid;                     /* layout dạng lưới */
+  gap: 10px;                         /* khoảng cách các dòng */
+  font-size: 15px;                   /* cỡ chữ */
+}
+
+.info span {
+  opacity: 0.75;                     /* chữ phụ mờ */
+  font-size: 13px;                   /* chữ nhỏ hơn */
+}
+
+/* ===============================
+   FOOTER
+   =============================== */
+.footer {
+  opacity: 0.6;                      /* mờ nhẹ */
+  font-size: 13px;                   /* chữ nhỏ */
+  text-align: center;                /* căn giữa */
+}
+
+/* ===============================
+   HERO IMAGE (ẢNH CHÍNH)
+   =============================== */
+.hero-image {
+  display: flex;
+  justify-content: center;           /* căn giữa ngang */
+  align-items: center;               /* căn giữa dọc */
+
+  margin: 20px auto 30px;            /* khoảng cách trên dưới */
+  max-width: 720px;                  /* giới hạn chiều ngang */
+  padding: 0 14px;                   /* CHỐNG TRÀN MOBILE */
+}
+
+.hero-image img {
+  width: 100%;                       /* co theo màn hình */
+  max-width: 470px;                  /* 👈 CHỈNH TO / NHỎ ẢNH TẠI ĐÂY */
+  height: auto;                      /* giữ đúng tỉ lệ */
+
+  border-radius: 18px;               /* bo góc */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+                                      /* bóng ảnh */
+}
+
+/* Animation xuất hiện ảnh */
+.hero-image img {
+  animation: fadeIn 1.2s ease forwards;
+}
+
+/* Hiệu ứng fade + zoom nhẹ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;                      /* bắt đầu trong suốt */
+    transform: scale(0.95);          /* thu nhỏ nhẹ */
+  }
+  to {
+    opacity: 1;                      /* hiện rõ */
+    transform: scale(1);             /* về kích thước gốc */
+  }
+}
+
+/* ===============================
+   CLICK ZOOM MODAL
+   =============================== */
+.img-modal {
+  position: fixed;                   /* phủ toàn màn hình */
+  inset: 0;                          /* top right bottom left = 0 */
+  background: rgba(0,0,0,0.85);      /* nền tối */
+  display: none;                     /* ẩn mặc định */
+  justify-content: center;           /* căn giữa ngang */
+  align-items: center;               /* căn giữa dọc */
+  z-index: 9999;                     /* luôn nổi trên cùng */
+}
+
+/* Khi mở modal */
+.img-modal.active {
+  display: flex;                     /* hiện modal */
+}
+
+/* Ảnh trong modal */
+.modal-content {
+  max-width: 90%;                    /* không tràn ngang */
+  max-height: 90%;                   /* không tràn dọc */
+  border-radius: 16px;               /* bo góc */
+  animation: zoomIn 0.3s ease;       /* hiệu ứng zoom */
+}
+
+/* Nút đóng */
+.close {
+  position: absolute;
+  top: 16px;                         /* cách trên */
+  right: 20px;                       /* cách phải */
+  font-size: 32px;                   /* cỡ dấu X */
+  color: #fff;                       /* màu chữ */
+  cursor: pointer;                   /* icon bàn tay */
+}
+
+/* Hiệu ứng zoom khi mở ảnh */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.85);          /* thu nhỏ */
+    opacity: 0;                      /* mờ */
+  }
+  to {
+    transform: scale(1);             /* kích thước chuẩn */
+    opacity: 1;                      /* rõ */
+  }
+}
+
+/* Gợi ý người dùng có thể click */
+.hero-image img {
+  cursor: zoom-in;                   /* icon kính lúp */
+}
+/*dòng kính mời*/
+.subtitle {
+ 
+  font-size: 14px;              /* cỡ chữ nội dung */
+  line-height: 1.6;             /* giãn dòng */
+  text-align: center;           /* căn giữa toàn khối */
+  opacity: 0.9;                 /* làm dịu chữ */
+}
+
+.invite-title {
+  display: block;               /* chiếm 1 dòng riêng */
+  font-size: 25px;              /* chữ to hơn */
+  font-weight: 600;             /* nhấn mạnh */
+  margin-bottom: 15px;           /* cách dòng dưới */
+}
+.invite-title h3 {
+  font-family:'CoupletFont' ;
+}
+.month-vi h3{
+  font-family:'CoupletFont' ;
+}
+.scene-title {
+  background: rgba(255,255,255,0.08); /* nền mờ */
+  backdrop-filter: blur(4px);         /* hiệu ứng kính */
+}
+.wedding-box {
+  width: 100%;
+  max-width: 520px;                 /* giới hạn chiều ngang */
+  padding: 24px 20px;               /* khoảng cách trong */
+
+  background: linear-gradient(
+    135deg,
+    #d86969,                        /* đỏ sẫm */
+    #700d0d,
+    #2d0505                         /* đỏ cưới sáng */
+  );
+
+  border-radius: 22px;              /* bo góc mềm */
+  border: 2px solid #ffd6d6;        /* viền hồng nhạt */
+
+  box-shadow: 
+    0 12px 30px rgba(0,0,0,0.35),
+    inset 0 0 20px rgba(255,255,255,0.15); /* ánh sáng trong */
+
+  text-align: center;
+  color: #fff;                      /* chữ trắng */
+}
+.wedding-box h2 {
+  margin-bottom: 14px;
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.wedding-box h4 {
+  margin: 18px 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffecec;
+  border-bottom: 2px solid rgba(255,255,255,0.6); /* gạch chân */
+  padding-bottom: 6px;
+}
+
+.wedding-box p {
+  margin: 6px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.wedding-box strong {
+  color: #db5f56;                   /* vàng nhạt – rất hợp cưới */
+}
+@media (max-width: 480px) {
+  .wedding-box {
+    padding: 18px 14px;
+    border-radius: 18px;
+  }
+}
+/* ===============================
+   CALENDAR SECTION
+   =============================== */
+.calendar-section {
+  display: flex;
+  justify-content: center;           /* căn giữa */
+  margin: 30px 0;
+}
+
+/* Khung nền lịch */
+.calendar-bg {
+  width: 100%;
+  max-width: 360px;                  /* gọn trên mobile */
+  padding: 18px;
+
+  background: linear-gradient(
+    135deg,
+    #9b0000,
+    #c91515,
+    #ff3b3b
+  );                                 /* nền đỏ cưới */
+
+  border-radius: 22px;               /* bo góc */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  color: #fff;
+}
+
+/* ===============================
+   HEADER THÁNG
+   =============================== */
+.calendar-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.month-vi {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.month-en {
+  font-size: 14px;
+  opacity: 0.85;
+  letter-spacing: 1px;
+}
+
+/* ===============================
+   LỊCH
+   =============================== */
+.calendar {
+  background: rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+/* THỨ TRONG TUẦN */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #ffecec;
+}
+
+/* NGÀY TRONG THÁNG */
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.days span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 38px;
+  font-size: 14px;
+
+  background: rgba(255,255,255,0.25);
+  border-radius: 10px;
+}
+
+/* Ô trống */
+.days .empty {
+  background: transparent;
+}
+
+/* ===============================
+   NGÀY CƯỚI ❤️
+   =============================== */
+.days .event {
+  position: relative;
+  background: #fff;                 /* nền trắng nổi */
+  color: #c00000;                   /* chữ đỏ */
+  font-weight: 700;
+
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  border: 2px solid #ffb3b3;
+}
+
+/* Icon tim */
+.days .event .heart {
+  position: absolute;
+  bottom: -8px;
+  right: -6px;
+  font-size: 14px;
+}
+
+/* ===============================
+   MOBILE TỐI ƯU
+   =============================== */
+@media (max-width: 480px) {
+  .calendar-bg {
+    padding: 14px;
+  }
+
+  .days span {
+    height: 34px;
+    font-size: 13px;
+  }
+}
+/* Wrapper chứa box */
+.boxes {
+  display: flex;              /* bật flex */
+  justify-content: center;    /* căn giữa ngang */
+  margin: 20px 0;             /* cách trên dưới */
+}
+
+/* Box nội dung */
+.box {
+  width: 100%;
+  max-width: 420px;           /* 👈 kiểm soát độ rộng */
+  margin: 0 auto;             /* dự phòng căn giữa */
+}
+
+/* CARD LỜI CHÚC */
+.wedding-wish {
+ background: #daabab; /* nền đỏ cưới */
+  color: #f3f1f1;
+   border-radius: 14px;
+}
+
+/* TIÊU ĐỀ */
+.titlechuc {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+/* FORM */
+.wish-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* INPUT + TEXTAREA */
+.wish-form input,
+.wish-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* TEXTAREA */
+.wish-form textarea {
+  resize: none; /* không cho kéo to nhỏ */
+}
+
+/* NÚT GỬI */
+.wish-form button {
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 999px;
+  border: none;
+  background: #ffd6d6;
+  color: #8b0000;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.wish-form button:hover {
+  background: #fff;
+}
+
+/* DANH SÁCH LỜI CHÚC */
+.wish-list {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* ===============================
+   COUNTDOWN – ĐẾM NGƯỢC NGÀY CƯỚI
+   =============================== */
+
+/* Tiêu đề */
+.dem {
+  text-align: center;                 /* căn giữa tiêu đề */
+  font-size: 30px;                    /* cỡ chữ */
+  margin: 30px 0 16px;                /* khoảng cách trên dưới */
+  color: #080707;                     /* đỏ cưới */
+  font-weight: bold;                  /* chữ đậm */
+}
+
+/* Khung tổng đếm ngược */
+.countdown {
+  display: flex;                      /* xếp ngang */
+  justify-content: center;            /* căn giữa */
+  gap: 12px;                          /* khoảng cách các ô */
+  flex-wrap: nowrap;                  /* KHÔNG cho rớt hàng */
+  margin-bottom: 30px;
+}
+
+/* Mỗi ô thời gian */
+.countdown > div {
+  background: linear-gradient(135deg, #b30000, #ff4d4d);
+                                         /* nền đỏ cưới */
+  color: #fff;                         /* màu chữ */
+  width: 70px;                         /* chiều rộng mỗi ô */
+  padding: 12px 6px;                   /* độ dày */
+  border-radius: 14px;                 /* bo góc */
+  text-align: center;                 /* căn giữa chữ */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+                                         /* đổ bóng */
+}
+
+/* Số đếm */
+.countdown span {
+  display: block;
+  font-size: 26px;                    /* số lớn */
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* Chữ đơn vị (Ngày / Giờ / Phút / Giây) */
+.countdown small {
+  display: block;
+  font-size: 12px;                    /* chữ nhỏ */
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+/* ===============================
+   MOBILE TỐI ƯU
+   =============================== */
+@media (max-width: 480px) {
+  .countdown {
+    gap: 8px;
+  }
+
+  .countdown > div {
+    width: 62px;                      /* nhỏ lại trên mobile */
+    padding: 10px 4px;
+  }
+
+  .countdown span {
+    font-size: 22px;
+  }
+
+  .countdown small {
+    font-size: 11px;
+  }
+}
+/* ===============================
+   RSVP – XÁC NHẬN THAM DỰ
+   =============================== */
+
+.rsvp {
+  background: linear-gradient(135deg, #d31313, #e7dede); /* nền đỏ cưới */
+  color: #fff;                 /* màu chữ */
+   border-radius: 14px;
+}
+
+/* Tiêu đề */
+.rsvp-title {
+  margin-bottom: 30px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/* Form */
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;                    /* khoảng cách các dòng */
+}
+
+/* Ô nhập tên */
+.rsvp-form input[type="text"] {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  outline: none;
+}
+
+/* Khối lựa chọn */
+.rsvp-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Mỗi lựa chọn */
+.rsvp-option {
+  display: flex;
+  justify-items:30px;
+  gap: 10px;
+
+  padding: 12px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.15); /* nền trong mờ */
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.rsvp-option:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+/* Radio */
+.rsvp-option input {
+  accent-color: #ffcccc; /* màu radio */
+  transform: scale(1.2);
+}
+
+/* Nút gửi */
+.rsvp-btn {
+  margin-top: 10px;
+  padding: 12px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #d46969;
+  color: #8b0000;
+  font-weight: 700;
+  font-size: 15px;
+
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover nút */
+.rsvp-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+.wedding-gallery{
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:12px;
+  margin:30px 0;
+}
+
+.wedding-gallery img{
+  width:28%;
+  max-width:180px;
+  border-radius:16px;
+  object-fit:cover;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+}
+
+.wedding-gallery img.main{
+  width:32%;
+  max-width:260px;
+  height:260px;
+}
+
+.wedding-gallery img:not(.main){
+  height:220px;
+}
+.map-link{
+  color:#7f8405;          /* màu chữ (vàng nhạt cưới) */
+  text-decoration:none;   /* bỏ gạch chân */
+  font-weight:600;        /* chữ đậm nhẹ */
+}
+
+.map-link:hover{
+  color:#25bc0a;          /* đổi màu khi rê chuột */
+  text-decoration:underline;
+}
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 720px;   /* giống layout thiệp của bạn */
+  margin: 20px auto;
+  aspect-ratio: 16 / 9; /* giữ tỉ lệ video */
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px; /* bo góc cho đẹp */
+}
+/* KHUNG 4 ẢNH HÌNH VUÔNG */
+.photo-square {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cột */
+  gap: 10px;               /* khoảng cách ảnh */
+  max-width: 420px;        /* toàn khối là hình vuông */
+  margin: 20px auto;
+}
+
+/* MỖI ẢNH LÀ HÌNH VUÔNG */
+.photo-square img {
+  width: 100%;
+  aspect-ratio: 1 / 1;     /* ÉP ẢNH VUÔNG */
+  object-fit: cover;       /* không méo ảnh */
+  border-radius: 14px;     /* bo góc cưới */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.bonmua h3 {
+  background: rgba(230, 220, 220, 0.08); /* nền mờ */
+  backdrop-filter: blur(4px);         /* hiệu ứng kính */
+}
+.wish-list {
+  max-height: 320px;       /* Chỉ hiển thị 3 lời chúc */
+  overflow-y: auto;        /* Thanh cuộn khi quá 3 lời chúc */
+  padding: 10px;
+  border: 5px solid #000000; /* viền đỏ cưới */
+  border-radius: 16px;
+  background: #ffffff;
+  margin-top: 15px;
+}
+
+.wish-item {
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  background: #a26e6e;
+  border-radius: 12px;
+  position: relative;
+}
+
+.wish-item.admin-controls {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+.wish-item.admin-controls button {
+  padding: 2px 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.wish-item.editing {
+  background: #ffffff;
+}
+.wish-item {
+  background: rgba(255,255,255,0.9);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.wish-name {
+  font-weight: bold;
+  color: #b40000;
+  margin-bottom: 6px;
+}
+
+.wish-text {
+  font-size: 12px;
+  line-height: 1.6;           /* 🔥 QUAN TRỌNG */
+  color: #333;
+
+  white-space: normal;        /* cho xuống dòng */
+  word-break: break-word;     /* bẻ chữ dài */
+  overflow-wrap: break-word;  /* mobile Safari */
+}
+.countdown{
+    font-family: 'thuphap'; 
+}
+.titlechuc{
+  font-family: 'CoupletFont';
+}
+.text{
+  font-family:sans-serif;
+} 
+
+
+
+
